@@ -85,8 +85,6 @@ const props = defineProps({
     },
 })
 
-console.log(props)
-
 let boxStyle = ref({
     background:
         props.fullImage && props.image

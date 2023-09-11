@@ -13,7 +13,6 @@ import techImages from '../assets/tech-logos'
 import clientImages from '../assets/clients'
 
 import '../assets/GitHubPinner.css'
-console.log(projectImages)
 
 interface Tile {
     name: string
@@ -59,6 +58,7 @@ const contactMethods: Tile[] = [
 ]
 
 import me from '../assets/me-new.png'
+import Background from '../components/Background.vue'
 ---
 
 <MainLayout>
@@ -146,6 +146,69 @@ import me from '../assets/me-new.png'
         </div>
         <h1 class="pt-4 text-3xl border-t border-slate-500 mt-3 mx-3"></h1>
         <div class="m-1 sm:m-2.5 space-y-4">
+            <div
+                class="bg-gradient-to-br text-black rounded-xl text-sm border-orthopurple border-solid border-[1px]"
+            >
+                <div class="sm:p-5 p-2.5 relative">
+                    <Background client:load />
+                    <div>
+                        <a href="https://orthographics.uk" target="_blank">
+                            <img
+                                class="sm:w-3/4 w-4/5 m-auto -mt-4"
+                                src={clientImages.orthographics.src}
+                                alt="Orthographics Logo"
+                            />
+                        </a>
+                    </div>
+                    <div class="">
+                        <h1
+                            class="font-display text-center leading-tight font-regular"
+                        >
+                            <span class="sm:text-[30pt] text-[24pt]">
+                                Complete
+                                <span class="text-orthopurple"
+                                    >real-time graphics
+                                </span>
+                                 solutions</span
+                            >
+                            <span class="sm:text-[24pt] text-[20pt]">
+                                <br />for live and offline productions
+                            </span>
+                        </h1>
+
+                        <h1
+                            class="text-center text-xl font-display mt-4 mx-4 font-regular"
+                        >
+                            Streamer Overlays
+                            <span class="text-orthopurple">•</span>
+                             Esports Tournaments
+                            <span class="text-orthopurple">•</span>
+                             Game Shows
+                            <span class="text-orthopurple">•</span>
+                             Live TV
+                        </h1>
+                    </div>
+                </div>
+                <div
+                    class="p-5 bg-white w-full rounded-b-xl border-t-orthopurple border-solid border-2 border-opacity-50"
+                >
+                    <h3 class="text-lg">
+                        I'm currently offering my services through
+                        Orthographics, a company I founded January 2023
+                        alongside my good friend
+                        <a
+                            class="underline text-orthopurple hover:text-orthopurple hover:opacity-80"
+                            href="https://tmewett.com">Tom Mewett</a
+                        >.
+                    </h3>
+                    <h2 class="text-2xl mt-2">
+                        Please visit <a
+                            class="underline text-orthopurple hover:text-orthopurple hover:opacity-80"
+                            href="https://orthographics.uk">our website</a
+                        > to learn more.
+                    </h2>
+                </div>
+            </div>
             <div
                 class="sm:p-5 p-2.5 bg-gradient-to-br from-neutral-800 to-neutral-600 text-white rounded-xl space-y-4 text-sm"
             >
