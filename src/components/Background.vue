@@ -14,7 +14,7 @@ import { useMouse } from '@vueuse/core'
 const canvas = ref<HTMLCanvasElement>()
 let ctx: CanvasRenderingContext2D | null
 
-const { x: mouseX, y: mouseY, sourceType } = useMouse({ type: 'page' })
+const { x: mouseX, y: mouseY, sourceType } = useMouse({ type: 'client' })
 
 const GAP = 33
 const RAD = 2
@@ -24,7 +24,7 @@ const WAVE_SPEED = 0.2
 const WAVE_WEIGHT = 1.3 // the wave will multiply dot size in the range 1 -> WAVE_WEIGHT
 
 const MOUSE_WEIGHT = 1.75 // the mouse will multiply dot size in the range 1 -> MOUSE_WEIGHT
-const MOUSE_RANGE = 400
+const MOUSE_RANGE = 200
 
 function smoothstep(k: number) {
     const kk = Math.min(Math.max(k, 0), 1)
