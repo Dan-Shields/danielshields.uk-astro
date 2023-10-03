@@ -11,12 +11,9 @@
             :style="boxStyle"
             @mouseover="updateHover(true)"
             @mouseout="updateHover(false)"
+            @click="updateHover(false)"
         >
-            <img
-                v-if="image && !fullImage"
-                class="m-auto select-none max-h-[80%] max-w-[80%]"
-                :src="image.src"
-            />
+            <slot />
         </div>
     </a>
 </template>
@@ -63,13 +60,9 @@ const props = defineProps({
         type: String,
         default: null,
     },
-    image: {
+    bgImage: {
         type: Object as PropType<ImageMetadata>,
         default: null,
-    },
-    fullImage: {
-        type: Boolean,
-        default: false,
     },
     interactive: {
         type: Boolean,
@@ -86,14 +79,13 @@ const props = defineProps({
 })
 
 let boxStyle = ref({
-    background:
-        props.fullImage && props.image
-            ? `url("${props.image.src}") center/cover no-repeat`
-            : 'linear-gradient(to bottom right, ' +
-              props.color +
-              ', ' +
-              lightenDarkenColor(props.color, 50) +
-              ')',
+    background: props.bgImage
+        ? `url("${props.bgImage.src}") center/cover no-repeat`
+        : 'linear-gradient(to bottom right, ' +
+          props.color +
+          ', ' +
+          lightenDarkenColor(props.color, 50) +
+          ')',
     cursor: props.interactive ? 'pointer' : 'unset',
     border: props.borderColor ? `1px solid ${props.borderColor}` : '',
 })

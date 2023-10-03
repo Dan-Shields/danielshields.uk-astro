@@ -14,19 +14,7 @@ import clientImages from '../assets/clients'
 
 import '../assets/GitHubPinner.css'
 
-interface Tile {
-    name: string
-    title: string
-    image?: ImageMetadata
-    fullImage?: boolean
-    colour?: string
-    width?: string
-    link?: string
-    invertColours?: boolean
-    interactive?: boolean
-}
-
-const contactMethods: Tile[] = [
+const contactMethods = [
     {
         name: '',
         title: 'Email',
@@ -58,6 +46,7 @@ const contactMethods: Tile[] = [
 ]
 
 import me from '../assets/me-new.png'
+import photos from '../assets/photos/photos.png'
 import Background from '../components/Background.vue'
 ---
 
@@ -66,35 +55,32 @@ import Background from '../components/Background.vue'
         import '../GitHubPinner.ts'
         import anime from 'animejs'
 
-        document.onload = () => {
-            anime({
-                targets: '.animate-in',
-                opacity: {
-                    value: [0, 1],
-                    duration: 1250,
-                    easing: 'easeOutQuart',
-                },
-                scale: {
-                    value: [0, 1],
-                    duration: 1500,
-                    easing: 'easeOutElastic(1, 1)',
-                },
-                delay: anime.stagger(100, { start: 200 }),
-            })
+        anime({
+            targets: '.animate-in',
+            opacity: {
+                value: [0, 1],
+                duration: 1250,
+                easing: 'easeOutQuart',
+            },
+            scale: {
+                value: [0, 1],
+                duration: 1500,
+                easing: 'easeOutElastic(1, 1)',
+            },
+            delay: anime.stagger(100, { start: 0 }),
+        })
 
-            anime({
-                targets: '.fade-in',
-                opacity: {
-                    value: [0, 1],
-                    duration: 1000,
-                    easing: 'easeOutQuart',
-                },
-                delay: 1100,
-            })
-        }
+        anime({
+            targets: '.fade-in',
+            opacity: {
+                value: [0, 1],
+                duration: 1000,
+                easing: 'easeOutQuart',
+            },
+        })
     </script>
     <div class="max-w-full m-auto align-middle w-full min-w-[240px]">
-        <h1 class="animate-in text-5xl mt-9 mb-8">Daniel Shields</h1>
+        <h1 class="text-5xl mt-9 mb-8">Daniel Shields</h1>
     </div>
 
     <div class="page p-2.5 pt-0">
@@ -102,7 +88,7 @@ import Background from '../components/Background.vue'
             class="px-5 sm:pt-2 pb-6 bg-gradient-to-br rounded-xl flex flex-wrap gap-4 justify-between items-center"
         >
             <div
-                class="basis-[164px] grow overflow-hidden aspect-square sm:rounded-full rounded-xl animate-in"
+                class="basis-[164px] grow overflow-hidden aspect-square sm:rounded-full rounded-xl"
             >
                 <Image
                     class="sm:translate-y-[-15%] sm:translate-x-[10%] -translate-y-[20%] sm:scale-125"
@@ -110,9 +96,7 @@ import Background from '../components/Background.vue'
                     alt="Picture of me!"
                 />
             </div>
-            <div
-                class="text-xl text-left space-y-4 basis-[400px] grow animate-in"
-            >
+            <div class="text-xl text-left space-y-4 basis-[400px] grow">
                 <p>
                     Hi, I'm Dan! I'm a broadcast software developer & operator,
                     sailor and private pilot.
@@ -128,7 +112,7 @@ import Background from '../components/Background.vue'
                 </p>
             </div>
         </div>
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap justify-center">
             {
                 contactMethods.map((tile, tileIndex) => (
                     <Tile
@@ -136,18 +120,44 @@ import Background from '../components/Background.vue'
                         key={tileIndex}
                         color={tile.colour}
                         link={tile.link}
-                        image={tile.image ?? ''}
-                        full-image={tile.fullImage ?? false}
-                        interactive={tile.interactive ?? true}
-                        class="animate-in basis-1/4 aspect-square"
-                    />
+                        class="animate-in basis-1/4 min-w-[120px] aspect-square opacity-0"
+                    >
+                        <img
+                            class="m-auto select-none max-h-[80%] max-w-[80%]"
+                            src={tile.image.src}
+                        />
+                    </Tile>
                 ))
             }
         </div>
-        <h1 class="pt-4 text-3xl border-t border-slate-500 mt-3 mx-3"></h1>
+        <h1 class="pt-3 text-3xl border-t border-slate-500 mt-3 mx-3"></h1>
+        <div class="flex flex-wrap">
+            <div
+                class="min-w-[250px] grow-[5] m-1 sm:m-2.5 sm:p-2 p-1 box-border rounded-xl border border-orange-500"
+            >
+                My Blog
+            </div>
+            <Tile
+                client:load
+                link="/photos"
+                class="basis-1/4 min-w-[250px] aspect-square grow"
+            >
+                <Image
+                    src={photos}
+                    alt="Collage of my photos."
+                    class="rounded-xl"
+                />
+                <h1
+                    class="[text-shadow:_2px_2px_2px_rgb(0_0_0_/_75%)] drop-shadow-2xl absolute text-white sm:text-[36px] text-[55px] px-4 shadow"
+                >
+                    Photography Portfolio
+                </h1>
+            </Tile>
+        </div>
+        <h1 class="pt-4 text-3xl border-t border-slate-500 mt-4 mx-3"></h1>
         <div class="m-1 sm:m-2.5 space-y-4">
             <div
-                class="bg-gradient-to-br text-black rounded-xl text-sm border-orthopurple border-solid border-[1px]"
+                class="bg-gradient-to-br text-black rounded-xl text-sm border-orthopurple border-solid border"
             >
                 <div class="sm:p-5 p-2.5 relative">
                     <Background client:load />
@@ -198,12 +208,14 @@ import Background from '../components/Background.vue'
                         alongside my good friend
                         <a
                             class="underline text-orthopurple hover:text-orthopurple hover:opacity-80"
-                            href="https://tmewett.com">Tom Mewett</a
+                            href="https://tmewett.com"
+                            target="_blank">Tom Mewett</a
                         >.
                     </h3>
                     <h2 class="text-2xl mt-2">
                         Please visit <a
                             class="underline text-orthopurple hover:text-orthopurple hover:opacity-80"
+                            target="_blank"
                             href="https://orthographics.uk">our website</a
                         > to learn more.
                     </h2>
