@@ -130,30 +130,6 @@ import Background from '../components/Background.vue'
                 ))
             }
         </div>
-        <h1 class="pt-3 text-3xl border-t border-slate-500 mt-3 mx-3"></h1>
-        <div class="flex flex-wrap">
-            <div
-                class="min-w-[250px] grow-[5] m-1 sm:m-2.5 sm:p-2 p-1 box-border rounded-xl border border-orange-500"
-            >
-                My Blog
-            </div>
-            <Tile
-                client:load
-                link="/photos"
-                class="basis-1/4 min-w-[250px] aspect-square grow"
-            >
-                <Image
-                    src={photos}
-                    alt="Collage of my photos."
-                    class="rounded-xl"
-                />
-                <h1
-                    class="[text-shadow:_2px_2px_2px_rgb(0_0_0_/_75%)] drop-shadow-2xl absolute text-white sm:text-[36px] text-[55px] px-4"
-                >
-                    Photography Portfolio
-                </h1>
-            </Tile>
-        </div>
         <h1 class="pt-4 text-3xl border-t border-slate-500 mt-4 mx-3"></h1>
         <div class="m-1 sm:m-2.5 space-y-4">
             <div
