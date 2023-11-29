@@ -7,7 +7,7 @@
     >
         <div
             ref="box"
-            class="w-full h-full box-border flex flex-col items-center justify-center cursor-pointer rounded-xl"
+            class="w-full h-full box-border flex flex-col items-center justify-center cursor-pointer rounded-xl relative"
             :style="boxStyle"
             @mouseover="updateHover(true)"
             @mouseout="updateHover(false)"
